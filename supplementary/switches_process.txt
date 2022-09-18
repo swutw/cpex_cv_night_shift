@@ -1,0 +1,16 @@
+nhc_analysis = True 
+mimic_tpw = True 
+GOES16_sat = True 
+meteosat_sat = True 
+brammer_tropical_waves = True 
+sal_split = True 
+uwincm_precipitation_animation = True 
+uutah_precipitation_animation = True 
+ucdavis_precipitation_animation = True 
+UTAH_website = True 
+mpas_precipitation = False 
+mpas_outlook_day34 = False 
+ECMWF_prediction = True 
+GFS_prediction = True 
+nasa_geos = True 
+uwincm_clouds_animation = False 

@@ -25,6 +25,9 @@ run_animations=True
 run_processing=True
 
 cwd = os.getcwd()
+cmd = ['cp', os.path.join(cwd,'supplementary','switches_download_main.txt'), os.path.join(cwd,'supplementary','switches_download.txt') ]
+os.system(' '.join(cmd))
+
 
 if change_work_dir:
   print(" ")

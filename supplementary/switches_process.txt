@@ -15,3 +15,4 @@ ucdavis_precipitation_animation = False
 mpas_precipitation = False 
 mpas_outlook_day34 = False 
 model_4panel = False 
+model_4panel = True

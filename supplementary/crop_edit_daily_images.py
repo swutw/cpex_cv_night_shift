@@ -33,6 +33,7 @@ import time
 model_4panel_ul = 'uwincm'
 model_4panel_ur = 'uutah'
 model_4panel_dl = 'ucdavis'
+#model_4panel_dl = 'uutah'
 model_4panel_dr = 'mpas'
 
 clearDirectory = False # remove existing files
@@ -677,7 +678,7 @@ if processImages:
 
 
   print('Processing images complete.')
-  time.sleep(10)
+  time.sleep(5)
 
 print('')
 print('')
@@ -843,11 +844,28 @@ if joinSlideAnimations:
 
   print('Creating joint animations complete.')
 
+#convert -size 500x500 xc:white canvas.png
+#convert canvas.png in.png -geometry +200+200 -composite out.png
+
   if switches['model_4panel']:
-    model_1 = model_4panel_ul+'_precip_day1_anim'
-    model_2 = model_4panel_ur+'_precip_day1_anim'
-    model_3 = model_4panel_dl+'_precip_day1_anim'
-    model_4 = model_4panel_dr+'_precip_day1_anim'
+    cmd = ['convert -size 780x400 xc:white', os.path.join(cropDir,'logo_cpexcv.png'), '-gravity center -composite', os.path.join(cropDir,'logo_cpexcv_cp.png')]
+    os.system(' '.join(cmd))
+    for num in range(12):
+        cmd = ['cp', os.path.join(cropDir,'logo_cpexcv_cp.png'), os.path.join(cropDir,'logo_cpexcv_anim_'+'{:02d}'.format(num)+'.png')]
+        os.system(' '.join(cmd))
+
+
+    if switches['uwincm_precipitation_animation']: model_1 = model_4panel_ul+'_precip_day1_anim'
+    else: model_1 = 'logo_cpexcv_anim_'
+
+    if switches['uutah_precipitation_animation']: model_2 = model_4panel_ur+'_precip_day1_anim'
+    else: model_2 = 'logo_cpexcv_anim_'
+
+    if switches['ucdavis_precipitation_animation']: model_3 = model_4panel_dl+'_precip_day1_anim'
+    else: model_3 = 'logo_cpexcv_anim_'
+
+    if switches['mpas_precipitation']: model_4 = model_4panel_dr+'_precip_day1_anim'
+    else: model_4 = 'logo_cpexcv_anim_'
 
     if 'model_4' in locals():
       fls_left = sorted([el for el in os.listdir(cropDir) if model_1 in el])
@@ -867,16 +885,23 @@ if joinSlideAnimations:
       fls_up = sorted([el for el in os.listdir(cropDir) if 'temp1_anim_' in el])
       fls_down = sorted([el for el in os.listdir(cropDir) if 'temp2_anim_' in el])
       if len(fls_up) <= len(fls_down):
-          for num, fl in enumerate(fls_up):
+          for num, fl in enumerate(fls_up[:12]):
               cmd = ['convert', '-append', os.path.join(cropDir,fl), os.path.join(cropDir,fls_down[num]), os.path.join(cropDir,'Four_model_joint_anim_day1_' + '{:02d}'.format(num) + '.jpg')]
               os.system(' '.join(cmd))
 
       animationSteps(cropDir, 'Four_model_joint_anim_day1_', 'Four_model_joint_movie_day1.gif')
 
-    model_1 = model_4panel_ul+'_precip_day2_anim'
-    model_2 = model_4panel_ur+'_precip_day2_anim'
-    model_3 = model_4panel_dl+'_precip_day2_anim'
-    model_4 = model_4panel_dr+'_precip_day2_anim'
+    if switches['uwincm_precipitation_animation']: model_1 = model_4panel_ul+'_precip_day2_anim'
+    else: model_1 = 'logo_cpexcv_anim_'
+
+    if switches['uutah_precipitation_animation']: model_2 = model_4panel_ur+'_precip_day2_anim'
+    else: model_2 = 'logo_cpexcv_anim_'
+
+    if switches['ucdavis_precipitation_animation']: model_3 = model_4panel_dl+'_precip_day2_anim'
+    else: model_3 = 'logo_cpexcv_anim_'
+
+    if switches['mpas_precipitation']: model_4 = model_4panel_dr+'_precip_day2_anim'
+    else: model_4 = 'logo_cpexcv_anim_'
 
     if 'model_4' in locals():
       fls_left = sorted([el for el in os.listdir(cropDir) if model_1 in el])
@@ -896,12 +921,11 @@ if joinSlideAnimations:
       fls_up = sorted([el for el in os.listdir(cropDir) if 'temp1_anim' in el])
       fls_down = sorted([el for el in os.listdir(cropDir) if 'temp2_anim' in el])
       if len(fls_up) <= len(fls_down):
-          for num, fl in enumerate(fls_up):
+          for num, fl in enumerate(fls_up[:12]):
               cmd = ['convert', '-append', os.path.join(cropDir,fl), os.path.join(cropDir,fls_down[num]), os.path.join(cropDir,'Four_model_joint_anim_day2_' + '{:02d}'.format(num) + '.jpg')]
               os.system(' '.join(cmd))
 
       animationSteps(cropDir, 'Four_model_joint_anim_day2_', 'Four_model_joint_movie_day2.gif')
-
 
 
   time.sleep(10)

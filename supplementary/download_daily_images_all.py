@@ -60,7 +60,6 @@ cropDir = os.path.join('.','figs_cropped')
 finDir  = os.path.join('.','figs_final')
 
 
-
 today = datetime.today()
 #today = datetime.strptime('2022-08-26', '%Y-%m-%d')
 today = today.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -160,6 +159,7 @@ print('')
 print('')
 print('')
 print('')
+
 
 
 
@@ -715,9 +715,6 @@ if downloadImages:
   for s_dl in switches:
       if switches[s_dl] == False:
          write_switch(s_dl, '', fl_switch)
-
-  if switches['model_4panel']:
-      write_switch('model_4panel', dl, fl_switch)
 
 
   total_links = count_good_links + count_bad_links

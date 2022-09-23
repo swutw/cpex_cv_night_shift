@@ -4,7 +4,7 @@ uwincm_precipitation_animation = True
 uutah_precipitation_animation = True
 ucdavis_precipitation_animation = True
 mpas_precipitation = True
-
+UTAH_website = False
 
 
 brammer_tropical_waves = False
@@ -21,7 +21,6 @@ GFS_prediction = False
 
 uwincm_clouds_animation = False
 mpas_outlook_day34 = False
-UTAH_website = False
 
 
 

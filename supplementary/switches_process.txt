@@ -1,1 +1,18 @@
-
+uwincm_precipitation_animation = True 
+uutah_precipitation_animation = True 
+ucdavis_precipitation_animation = False 
+mpas_precipitation = True 
+UTAH_website = False 
+brammer_tropical_waves = False 
+GOES16_sat = False 
+meteosat_sat = False 
+mimic_tpw = False 
+nhc_analysis = False 
+sal_split = False 
+nasa_geos = False 
+nasa_geos_cross_section = False 
+ECMWF_prediction = False 
+GFS_prediction = False 
+uwincm_clouds_animation = False 
+mpas_outlook_day34 = False 
+model_4panel = True 

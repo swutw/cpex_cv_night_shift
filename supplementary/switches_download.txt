@@ -1,22 +1,28 @@
-brammer_tropical_waves = True
-GOES16_sat = True
-meteosat_sat = True
-mimic_tpw = True
-nhc_analysis = True
-sal_split = True
+model_4panel = True
 
-nasa_geos = True
-nasa_geos_cross_section = True
-ECMWF_prediction = True
-GFS_prediction = True
+uwincm_precipitation_animation = True
+uutah_precipitation_animation = True
+ucdavis_precipitation_animation = True
+mpas_precipitation = True
+UTAH_website = False
+
+
+brammer_tropical_waves = False
+GOES16_sat = False
+meteosat_sat = False
+mimic_tpw = False
+nhc_analysis = False
+sal_split = False
+
+nasa_geos = False
+nasa_geos_cross_section = False
+ECMWF_prediction = False
+GFS_prediction = False
 
 uwincm_clouds_animation = False
-uwincm_precipitation_animation = False
-uutah_precipitation_animation = False
-ucdavis_precipitation_animation = False
-mpas_precipitation = False
-
 mpas_outlook_day34 = False
-model_4panel = False
 
-UTAH_website = True
+
+
+
+

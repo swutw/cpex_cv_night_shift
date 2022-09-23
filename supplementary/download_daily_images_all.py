@@ -716,6 +716,9 @@ if downloadImages:
       if switches[s_dl] == False:
          write_switch(s_dl, '', fl_switch)
 
+  if switches['model_4panel']:
+      print('Found this')
+      write_switch('model_4panel', [True], fl_switch)
 
   total_links = count_good_links + count_bad_links
   print("Downloading images for today's forecast complete.")

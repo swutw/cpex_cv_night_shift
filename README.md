@@ -15,7 +15,7 @@ To run the scripts in this directory, you will need to following:
     - urllib (retrieving images)
     - time
 3. Microsoft Powerpoint.
-4. **Access to a Mac/Linux computer.  These OSs reliably run the scripts successfully, while there are some lingering bugs for Windows users.  If you are a lead forecaster with a Windows computer, coordinate with your support forecasters to run the scripts on a Mac/Linux machine.  There is at least one Mac/Linux user in every forecast team.**
+4. **Access to a Mac/Linux computer.  These OSs reliably run the scripts successfully, while there are some lingering bugs for Windows users.  If you are a lead forecaster with a Windows computer, coordinate with your support forecasters to run the scripts on a Mac/Linux machine.  There is at least one Mac/Linux user in every forecast group.**
 
 - Google Drive with forecasting resources: https://drive.google.com/drive/u/0/folders/1DC6AGeQbo8y9StU1wO9NbwBCahSa66BF
 - Google Drive link:  https://drive.google.com/drive/u/0/folders/14g2MU2wh6fWceYqPDgEeQqtZ734wW_zm
@@ -24,14 +24,12 @@ To run the scripts in this directory, you will need to following:
 -------------------------------------------
 # Steps for automatically downloading the figures
 
-1. Go to https://orca.atmos.washington.edu/models_cpex_aw/models.php and click yesterday's date in the calendar, located in the upper right portion of the screen.  Confirm that UWIN-CM, U of Utah WRF, and UC-Davis WRF models run out to at least 23Z of the day 2 forecast date.  If not, see "Potential Script Errors" section before proceeding to Step 2.
-2. In your computer's terminal, enter into the "CPEX-CV_object_oriented" directory
-3. Then, type **python ./run_forecast_scripts.py**, which will run all of the necessary steps/scripts automatically for you
+1. In your computer's terminal, enter into the "cpex_cv_night_shift" directory
+2. Then, type **python ./run_forecast_scripts.py**, which will run all of the necessary steps/scripts automatically for you
     -   For manual download (which should be unnecessary), see "Steps for manually downloading the figures" section below
 
-If the script runs successfully, you're done!  Proceed to "Steps for creating the Microsoft PowerPoint template" and other lead forecaster steps in the Forecaster Responsibilities Google Doc (see Google Drive link above).
-
-If the script does not run successfully, proceed to the "Potential Script Errors" section.
+3. If the script runs successfully, proceed to "Steps for creating the Microsoft PowerPoint template" and other lead forecaster steps in the Forecaster Responsibilities Google Doc (see Google Drive link above).  
+    -   If the script does not run successfully, proceed to the "Potential Script Errors" section.
 
 -------------------------------------------
 # Steps for creating the Microsoft PowerPoint template
@@ -41,6 +39,7 @@ Make sure you have successfully downloaded image/animation files and cropped the
 
 2. Manually insert the _./figs_final/_ figures into the PowerPoint. This might vary from machine to machine, or from one PowerPoint version to another. But in general, here's what you need to do **for each image in the template**:
 - Right click on the image and select **Format Picture...**.  In the _Format Picture_ pop-up window, click on the paint can (_Fill & Line_), then click on the _Fill_ dropdown menu, then click _Insert..._  Navigate to the _./figs_final/_ directory and double click on the appropriate image.  Images will be labeled with a prefix that coincides with the slide that the image should be pasted on.
+    - There will be no _Insert..._ option for the ECMWF/GFS animations from Tropical Tidbits.  You will just have to delete the animation that is in the template, then drag and drop in the appropriate animation from the _./figs_final/_ directory.
 
 3. After manually inserting the figures into the PowerPoint, confirm that the dates in the figures match their appropriate forecast day (when included in the figure). For example, model images have a timestamp on the top right.
 
@@ -52,22 +51,25 @@ Make sure you have successfully downloaded image/animation files and cropped the
 
 5. Right before the final summary slide, copy and paste in Roman’s satellite tracks slides for the current day, day 1, and day 2 (if they’re available)
 
-6. After the last slide, go to https://drive.google.com/drive/folders/1InAiHzAHk1MRn-5Qev_-MXcIGpVYwLFZ and copy and paste in the previous day’s (and current day’s, if available) radiosonde soundings from the hotel
+6. After the last slide, go to https://drive.google.com/drive/folders/1InAiHzAHk1MRn-5Qev_-MXcIGpVYwLFZ and copy and paste in the previous day’s radiosonde soundings from the hotel.
 
 7. Upload the PowerPoint presentation to the Google Drive (https://drive.google.com/drive/u/0/folders/14g2MU2wh6fWceYqPDgEeQqtZ734wW_zm) by the beginning of the forecast prep discussion time
 
-8. Proceed to other lead forecaster steps in the Forecaster Responsibilities Google Doc (see Google Drive link above)
+8. Right before the briefing time, execute **python ./run_model_4panel.py** with the appropriate _precipitation_animation_ switches set in _./supplementary/switches_download_model_4panel.txt_ (based on mesoscale model availability; the mesoscale models should be finished running by ~6am).
+    - To confirm UWIN-CM and UC-Davis models have run, go to https://orca.atmos.washington.edu/models_cpex_aw/models.php and click yesterday's date in the calendar, located in the upper right portion of the screen.  To confirm that U of Utah WRF model has run, go to https://home.chpc.utah.edu/~pu/cpexaw/ and select yesterday's 00Z time.  To confirm that the NCAR MPAS model has run, go to https://www2.mmm.ucar.edu/projects/real-time-forecasts/ and select yesterday's 12Z time.  Confirm that UWIN-CM, UC-Davis WRF, U of Utah WRF, and NCAR MPAS models run out to at least 23Z of the day 2 forecast date.  If not, see "Potential Script Errors" section before proceeding to Step 2.
+    - While you're presenting the briefing, this script will run in the background and create the 4-panel animations that we have included in the briefing in the past.  **You do not need to discuss them during the briefing.**  However, after the briefing, put these 1- and 2-day 4-panel animations in the appropriate "skipped" convection slide in the PowerPoint and "unskip" the slide.  **You do not need to add text to these slides.**. During the flight planning, you can then pull up these animations for the flight planners, as they are very useful when making flight plans. 
+    - If the script crashes for some reason (other than you forgot to change one of the _precipitation_animation_ switches in _./supplementary/switches_download_model_4panel.txt_), then don't worry about it.
+
+9. Proceed to other lead forecaster steps in the Forecaster Responsibilities Google Doc (see Google Drive link above)
 
 -------------------------------------------
 # Potential Script Errors
 
-1. Per Step 1 in "Steps for automatically downloading the figures", if any of the 3 models' runs are not complete out to the day 2 forecast, open _./supplementary/switches_download.txt_ and change the model's associated switches to False.  Then, go into _./supplementary/crop_edit_daily_images.py_ and set the model's assigned "model_4panel_XX" variable equal a repeat of one of the other model's names (preferably MPAS, unless MPAS is the problem).
- - If the U of Utah WRF model is not finished updating on the UW website, it may be finished updating on its own website (https://home.chpc.utah.edu/~pu/cpexaw/).  If it's finished, then all you need to do is set _uutah_precipitation_animation = False_ and _UTAH_website = False_.  You don't need to edit anything in _./supplementary/crop_edit_daily_images.py_
-    - If the U of Utah WRF 12Z model run isn't finished on either website, then open _./supplementary/download_daily_images_all.py_ and change ” utah_ini_time = ‘12’ ” to ” utah_ini_time = ‘00’ ”.  You should just have to comment and uncomment these lines, respectively.
+1. If any of the models' runs are not completed yet, open _./supplementary/switches_download_main.txt_ and _./supplementary/switches_download_model_4panel.txt_ and change the model's associated switches to False. 
     - If both the UWIN-CM and U of Utah WRF models are not working, follow the steps above, and also delete the day 1/2 TPW/Rain joint animation slides from the PowerPoint presentation.
 
 2. KeyError: '.......'
- - If you get a KeyError for an "if switches['......']:" line of code, then set the appropriate switch in _./supplementary/switches_download.txt_ to False.  If the KeyError is for the UWIN-CM, U of Utah WRF, UC-Davis WRF, or NCAR MPAS model, then refer to #1 in Potential Script Errors.
+ - If you get a KeyError for an "if switches['......']:" line of code, then set the appropriate switch in _./supplementary/switches_download_main.txt_ to False.  If the KeyError is for the UWIN-CM, U of Utah WRF, UC-Davis WRF, or NCAR MPAS model, then refer to #1 in Potential Script Errors.
 
 3. If you encounter any other issues that you can't resolve, then message Shun-Nan and Ben together on Slack, and they will do their best to help you.  If they are not available, then you will need to figure out a solution.  That may be just using some of the forecast websites directly in your presentation, rather than having their imagery be in a PowerPoint.
 

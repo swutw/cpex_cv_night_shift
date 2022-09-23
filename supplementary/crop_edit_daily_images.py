@@ -33,7 +33,6 @@ import time
 model_4panel_ul = 'uwincm'
 model_4panel_ur = 'uutah'
 model_4panel_dl = 'ucdavis'
-#model_4panel_dl = 'uutah'
 model_4panel_dr = 'mpas'
 
 clearDirectory = False # remove existing files
@@ -48,8 +47,6 @@ forecastDir = os.getcwd()
 saveDir = os.path.join('.','figs')
 cropDir = os.path.join('.','figs_cropped')
 finDir  = os.path.join('.','figs_final')
-
-
 
 
 nDup_frames = 3
@@ -854,18 +851,18 @@ if joinSlideAnimations:
         cmd = ['cp', os.path.join(cropDir,'logo_cpexcv_cp.png'), os.path.join(cropDir,'logo_cpexcv_anim_'+'{:02d}'.format(num)+'.png')]
         os.system(' '.join(cmd))
 
-
-    if switches['uwincm_precipitation_animation']: model_1 = model_4panel_ul+'_precip_day1_anim'
+    if len(sorted([el for el in os.listdir(cropDir) if 'uwincm_precip_day1_anim' in el])) >= 12: model_1 = model_4panel_ul+'_precip_day1_anim'
     else: model_1 = 'logo_cpexcv_anim_'
 
-    if switches['uutah_precipitation_animation']: model_2 = model_4panel_ur+'_precip_day1_anim'
+    if len(sorted([el for el in os.listdir(cropDir) if 'uutah_precip_day1_anim' in el])) >= 12: model_2 = model_4panel_ur+'_precip_day1_anim'
     else: model_2 = 'logo_cpexcv_anim_'
 
-    if switches['ucdavis_precipitation_animation']: model_3 = model_4panel_dl+'_precip_day1_anim'
+    if len(sorted([el for el in os.listdir(cropDir) if 'ucdavis_precip_day1_anim' in el])) >= 12: model_3 = model_4panel_dl+'_precip_day1_anim'
     else: model_3 = 'logo_cpexcv_anim_'
 
-    if switches['mpas_precipitation']: model_4 = model_4panel_dr+'_precip_day1_anim'
+    if len(sorted([el for el in os.listdir(cropDir) if 'mpas_precip_day1_anim' in el])) >= 12: model_4 = model_4panel_dr+'_precip_day1_anim'
     else: model_4 = 'logo_cpexcv_anim_'
+
 
     if 'model_4' in locals():
       fls_left = sorted([el for el in os.listdir(cropDir) if model_1 in el])
@@ -891,16 +888,16 @@ if joinSlideAnimations:
 
       animationSteps(cropDir, 'Four_model_joint_anim_day1_', 'Four_model_joint_movie_day1.gif')
 
-    if switches['uwincm_precipitation_animation']: model_1 = model_4panel_ul+'_precip_day2_anim'
+    if len(sorted([el for el in os.listdir(cropDir) if 'uwincm_precip_day2_anim' in el])) >= 12: model_1 = model_4panel_ul+'_precip_day2_anim'
     else: model_1 = 'logo_cpexcv_anim_'
 
-    if switches['uutah_precipitation_animation']: model_2 = model_4panel_ur+'_precip_day2_anim'
+    if len(sorted([el for el in os.listdir(cropDir) if 'uutah_precip_day2_anim' in el])) >= 12: model_2 = model_4panel_ur+'_precip_day2_anim'
     else: model_2 = 'logo_cpexcv_anim_'
 
-    if switches['ucdavis_precipitation_animation']: model_3 = model_4panel_dl+'_precip_day2_anim'
+    if len(sorted([el for el in os.listdir(cropDir) if 'ucdavis_precip_day2_anim' in el])) >= 12: model_3 = model_4panel_dl+'_precip_day2_anim'
     else: model_3 = 'logo_cpexcv_anim_'
 
-    if switches['mpas_precipitation']: model_4 = model_4panel_dr+'_precip_day2_anim'
+    if len(sorted([el for el in os.listdir(cropDir) if 'mpas_precip_day2_anim' in el])) >= 12: model_4 = model_4panel_dr+'_precip_day2_anim'
     else: model_4 = 'logo_cpexcv_anim_'
 
     if 'model_4' in locals():
